@@ -3,5 +3,14 @@ from django.http import HttpResponse
 
 def index (request):
         return render (request,'index.html',{
-            'message': 'Nuevo Mensaje'
-        })S
+            'message': 'Listado de Productos',
+            'title': 'Productos',
+            'products': [
+                
+                {'title':'Playera', 'price': 5, 'stock': True},
+                {'title':'Camisa', 'price': 7, 'stock': True},
+                {'title':'Mochila', 'price': 20, 'stock': False},
+                
+                
+             ]
+        })
