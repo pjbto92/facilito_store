@@ -26,30 +26,13 @@
 <body>
   <div class="container">
     {%if messages%}
-
-            {%for message in messages%}
-                {%if message.tags == 'success'%}
-                    <div class="alert alert-success">
-                     <button type="button" class="close" data-dismiss="alert">x</button>
-
-                        {{message}}
-
-                    </div>
-                {%else%}
-                    <div class="alert alert-danger">
-                     <button type="button" class="close" data-dismiss="alert">x</button>
-                     
-                     {{message}}
-
-
-                    </div>
-                {%endif%}    
-            {%endfor%}
-
-
-        {%endif%}
-
-       
+         {%for message in messages%}
+           <div class="alert {%if message.tags == 'success'%} alert-success {%else%} alert-danger {%endif%}">
+               <button type="button" class="close" data-dismiss="alert">x</button>
+               {{message}}
+           </div>
+        {%endfor%}
+    {%endif%}
     <div class='row'>
         <div class='col'>
             <h1> {{message}} </h1>
@@ -69,7 +52,7 @@
             {% endfor %}
             </ul>
            
-            <img src="{%static 'images/mochila.jpg'%}" alt="Mochila">
+            <img src="{%static 'images/mochila.jpg'%} " width="200" height="200"  alt="Mochila">
 
         </div>
 
