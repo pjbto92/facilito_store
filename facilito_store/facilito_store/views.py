@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.contrib import messages 
 from django.contrib.auth import login
 from django.contrib.auth import logout
+from .forms import RegisterForm
 from django.contrib.auth import authenticate
 
 def index (request):
@@ -42,4 +43,9 @@ def login_view(request):
 def logout_view(request):
     logout (request,)
     messages.success(request, 'Sesion cerrada corectamente')
-    return redirect(´login´)
+    return redirect('login')
+
+def register(request):
+    form = RegisterForm()
+    return render(request,'users/register.html',{'form' : form})
+    
