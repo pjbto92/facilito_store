@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 
 from django.contrib import messages 
 from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 
 def index (request):
@@ -37,3 +38,8 @@ def login_view(request):
             messages.error(request,'Usuario y contraseña no validos')            
 
     return render(request,'users/login.html', {})   
+
+def logout_view(request):
+    logout (request,)
+    messages.success(request, 'Sesion cerrada corectamente')
+    return redirect(´login´)
