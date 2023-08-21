@@ -47,3 +47,15 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError('El Email tambien ya se encuentra en uso nde mykure')
         return email
 
+    def clean(self):
+        cleaned_data = super().clean()
+        
+        if cleaned_data.get('password2') != cleaned_data.get('password'):
+            self.add_errpr('password2', 'El password no coincide')
+        
+    def save(self):
+        return User.objects.create_user(   
+            self.cleaned_data.get('username'),
+            self.cleaned_data.get('email'),
+            self.cleaned_data.get('password'),
+        )
