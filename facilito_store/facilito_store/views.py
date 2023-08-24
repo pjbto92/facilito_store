@@ -9,27 +9,26 @@ from .forms import RegisterForm
 from django.contrib.auth import authenticate
 
 from django.contrib.auth.models import  User
-
+from Products.models import Product
  
 
 def index(request):
+    
+    products= Product.objects.all().order_by('id')
     return render(
         request,
         "index.html",
         {
             "message": "Listado de Productos",
             "title": "Productos",
-            "products": [
-                {"title": "Playera", "price": 5, "stock": True},
-                {"title": "Camisa", "price": 7, "stock": True},
-                {"title": "Mochila", "price": 20, "stock": False},
-                {"title": "Laptop", "price": 120, "stock": True},
-            ],
+            "products":products,
         },
     )
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == "POST":
         username = request.POST.get("username")  # diccionario
         password = request.POST.get("password")
@@ -54,6 +53,8 @@ def logout_view(request):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     form = RegisterForm(request.POST or None
     )
     
