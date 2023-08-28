@@ -1,0 +1,28 @@
+
+{%extends 'base.html'%}
+
+
+{%load static%}
+
+{%block content%}
+
+      <div class='col'>
+          <h1> {{message}} </h1>
+          <ul>
+          {% for product  in product_list %}
+              <li class='list-group-item'>
+                  {{product.title}}
+                  
+                     
+                    <span class='text-success'>${{product.price}}</span>
+                         
+                  
+              </li>
+            {%endfor%}
+          </ul>
+         
+         <!-- <img src="{%static 'images/mochila.png'%} " width="200" height="200"  alt="Mochila">-->
+
+      </div>
+
+{%endblock%}
